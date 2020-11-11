@@ -66,12 +66,14 @@ namespace TinkoffOplata.TokenValidator
 
         private string CalculateSHA256Hash(string str)
         {
-            using var sha256 = SHA256.Create();
+            using (var sha256 = SHA256.Create())
+            {
 
-            var hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(str));
-            var hashedStr = Encoding.UTF8.GetString(hash);
+                var hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(str));
+                var hashedStr = Encoding.UTF8.GetString(hash);
 
-            return hashedStr;
+                return hashedStr;
+            }
         }
 
     }
