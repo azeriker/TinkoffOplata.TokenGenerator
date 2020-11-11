@@ -40,7 +40,7 @@ namespace TinkoffOplata.TokenValidator
 
             var hashedValues = CalculateSHA256Hash(concatedValues);
 
-            return hashedValues == token;
+            return token.Equals(hashedValues, StringComparison.OrdinalIgnoreCase);
         }
 
         private List<(string Key, string Value)> ConvertToTuplesList(JToken jtoken)
@@ -48,7 +48,9 @@ namespace TinkoffOplata.TokenValidator
             return jtoken.Select(kv =>
             {
                 var jp = kv as JProperty;
-                return (jp?.Name, Value: jp?.Value.ToString());
+                var name = jp.Name;
+                var value = jp.Value.Type == JTokenType.Boolean ? jp.Value.ToString().ToLower() : jp.Value.ToString();
+                return (name, value);
             }).ToList();
         }
 
@@ -59,9 +61,7 @@ namespace TinkoffOplata.TokenValidator
 
         private string ConcatAllValues(List<(string Key, string Value)> list)
         {
-            var resultString = string.Empty;
-            list.ForEach(kv => resultString += kv.Value);
-            return resultString;
+            return string.Concat(list.Select(kv => kv.Value));
         }
 
         private string CalculateSHA256Hash(string str)
@@ -70,7 +70,7 @@ namespace TinkoffOplata.TokenValidator
             {
 
                 var hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(str));
-                var hashedStr = Encoding.UTF8.GetString(hash);
+                var hashedStr = string.Concat(hash.Select(b => b.ToString("X2")).ToArray());
 
                 return hashedStr;
             }
