@@ -8,6 +8,9 @@
     <Description>Token calculation helper only
 for https://oplata.tinkoff.ru/develop/api/notifications/setup-request-sign/
 Use class TokenValidator to validate request</Description>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/azeriker/TinkoffOplata.TokenGenerator</RepositoryUrl>
+    <AssemblyVersion>1.0.1.1</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
