@@ -4,13 +4,15 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>m.shapovalov</Authors>
     <Company />
-    <Version>1.0.1</Version>
+    <Version>1.0.3</Version>
     <Description>Token calculation helper only
 for https://oplata.tinkoff.ru/develop/api/notifications/setup-request-sign/
 Use class TokenValidator to validate request</Description>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/azeriker/TinkoffOplata.TokenGenerator</RepositoryUrl>
-    <AssemblyVersion>1.0.1.1</AssemblyVersion>
+    <AssemblyVersion>1.0.3.0</AssemblyVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <FileVersion>1.0.3.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
