@@ -14,7 +14,7 @@ namespace TinkoffOplata.TokenValidator
         private const string TOKEN_KEY = "Token";
 
         private readonly string _passwordValue;
-        private readonly IReadOnlyList<string> _keysToExclude = new[] { "Receipt", "Data", TOKEN_KEY };
+        private readonly IReadOnlyList<string> _keysToExclude = new[] { "Receipt", "DATA", TOKEN_KEY };
 
         public TokenValidator(string passwordValue)
         {
