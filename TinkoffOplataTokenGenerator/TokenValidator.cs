@@ -24,11 +24,9 @@ namespace TinkoffOplata.TokenValidator
             _passwordValue = passwordValue;
         }
 
-        public bool Validate(JToken requestBody)
+        public string CalculateToken(JToken request)
         {
-            var keyAndValues = ConvertToTuplesList(requestBody);
-
-            var token = keyAndValues.FirstOrDefault(kv => kv.Key == TOKEN_KEY).Value;
+            var keyAndValues = ConvertToTuplesList(request);
 
             ClearList(keyAndValues);
 
@@ -36,9 +34,18 @@ namespace TinkoffOplata.TokenValidator
 
             keyAndValues = keyAndValues.OrderBy(kv => kv.Key).ToList();
 
-            var concatedValues = ConcatAllValues(keyAndValues);
+            var concatenatedValues = ConcatAllValues(keyAndValues);
 
-            var hashedValues = CalculateSHA256Hash(concatedValues);
+            return CalculateSHA256Hash(concatenatedValues);
+        }
+
+        public bool Validate(JToken requestBody)
+        {
+            var keyAndValues = ConvertToTuplesList(requestBody);
+
+            var token = keyAndValues.FirstOrDefault(kv => kv.Key == TOKEN_KEY).Value;
+
+            var hashedValues = CalculateToken(requestBody);
 
             return token.Equals(hashedValues, StringComparison.OrdinalIgnoreCase);
         }
