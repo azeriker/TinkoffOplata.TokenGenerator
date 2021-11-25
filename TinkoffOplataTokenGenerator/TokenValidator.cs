@@ -14,7 +14,7 @@ namespace TinkoffOplata.TokenValidator
         private const string TOKEN_KEY = "Token";
 
         private readonly string _passwordValue;
-        private readonly IReadOnlyList<string> _keysToExclude = new[] { "Receipt", "DATA", TOKEN_KEY };
+        private readonly IReadOnlyList<string> _keysToExclude = new[] { "Receipt", "Data", TOKEN_KEY };
 
         public TokenValidator(string passwordValue)
         {
@@ -63,7 +63,7 @@ namespace TinkoffOplata.TokenValidator
 
         private void ClearList(List<(string Key, string Value)> list)
         {
-            list.RemoveAll(kv => _keysToExclude.Contains(kv.Key));
+            list.RemoveAll(kv => _keysToExclude.Any(k => k.Equals(kv.Key, StringComparison.InvariantCultureIgnoreCase)));
         }
 
         private string ConcatAllValues(List<(string Key, string Value)> list)
