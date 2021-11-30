@@ -36,7 +36,7 @@ namespace TinkoffOplata.TokenValidator
 
             var concatenatedValues = ConcatAllValues(keyAndValues);
 
-            return CalculateSHA256Hash(concatenatedValues);
+            return CalculateSHA256Hash(concatenatedValues).ToLowerInvariant();
         }
 
         public bool Validate(JToken requestBody)
