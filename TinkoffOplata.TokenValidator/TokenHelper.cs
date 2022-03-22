@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 
 namespace TinkoffOplata
 {
-    public sealed class TokenValidator
+    public sealed class TokenHelper
     {
         private const string PASSWORD_KEY = "Password";
         private const string TOKEN_KEY = "Token";
@@ -16,7 +16,7 @@ namespace TinkoffOplata
         private readonly string _passwordValue;
         private readonly IReadOnlyList<string> _keysToExclude = new[] { "Receipt", "Data", TOKEN_KEY };
 
-        public TokenValidator(string passwordValue)
+        public TokenHelper(string passwordValue)
         {
             if (string.IsNullOrEmpty(passwordValue))
                 throw new ArgumentNullException(nameof(passwordValue));
