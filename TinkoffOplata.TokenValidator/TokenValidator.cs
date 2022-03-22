@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Newtonsoft.Json.Linq;
 
-namespace TinkoffOplata.TokenValidator
+namespace TinkoffOplata
 {
     public sealed class TokenValidator
     {
